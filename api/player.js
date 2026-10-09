@@ -1,4 +1,3 @@
-// CommonJS syntax — works reliably on Vercel
 const { FreeFireAPI } = require('ffapis');
 
 module.exports = async function handler(req, res) {
@@ -6,7 +5,10 @@ module.exports = async function handler(req, res) {
   if (!uid) return res.status(400).json({ error: 'UID required' });
 
   try {
-    const api = new FreeFireAPI();
+    // Force the API to use the current Free Fire version (OB55)
+    const api = new FreeFireAPI(null, { obVersion: 'OB55' });
+    
+    // Now fetch the profile
     const profile = await api.getPlayerProfile(uid);
     res.status(200).json(profile);
   } catch (error) {
