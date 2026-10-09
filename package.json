@@ -1,7 +1,6 @@
 {
   "name": "dezone-api",
   "version": "1.0.0",
-  "type": "module",
   "dependencies": {
     "ffapis": "^3.0.1"
   }
