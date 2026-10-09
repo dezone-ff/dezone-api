@@ -1,6 +1,7 @@
-import { FreeFireAPI } from 'ffapis';
+// CommonJS syntax — works reliably on Vercel
+const { FreeFireAPI } = require('ffapis');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const { uid } = req.query;
   if (!uid) return res.status(400).json({ error: 'UID required' });
 
@@ -11,4 +12,4 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch player', details: error.message });
   }
-}
+};
