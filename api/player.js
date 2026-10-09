@@ -1,16 +1,16 @@
-const { FreeFireAPI } = require('ffapis');
-
-module.exports = async function handler(req, res) {
-  const { uid } = req.query;
-  if (!uid) return res.status(400).json({ error: 'UID required' });
-
-  try {
-    // Force the API to use the current Free Fire version (OB55)
-    const api = new FreeFireAPI(null, { obVersion: 'OB55' });
-    
-    const profile = await api.getPlayerProfile(uid);
-    res.status(200).json(profile);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch player', details: error.message });
-  }
-};
+<div id="search" class="page active">
+  <div class="card">
+    <h3>Player Lookup</h3>
+    <input id="uidInput" type="text" placeholder="Enter Free Fire UID (8-12 digits)">
+    <button onclick="lookupPlayer()">🔍 Search Player</button>
+    <div class="result" id="playerResult">Enter a UID to fetch player stats.</div>
+  </div>
+  <div class="card">
+    <h3>Quick Info</h3>
+    <div class="result">
+      • UIDs are 8–12 digits<br>
+      • Find your UID in Free Fire → Profile<br>
+      • Stats update within minutes of a match
+    </div>
+  </div>
+</div>
